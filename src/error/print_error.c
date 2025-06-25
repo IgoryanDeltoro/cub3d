@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_app.c                                         :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/25 13:04:12 by ibondarc         ###   ########.fr       */
+/*   Created: 2025/06/25 12:21:08 by ibondarc          #+#    #+#             */
+/*   Updated: 2025/06/25 13:08:34 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void initial_game(t_game *game)
+void	print_error(char *str)
 {
-    game->mlx = NULL;
-	game->win = NULL;
-	game->map = NULL;
-	game->map_width = -1;
-	game->map_height = -1;
-	game->player_x = -1;
-	game->player_y = -1;
+	int str_len;
+	
+	if (!str)
+		return ;
+	str_len = ft_strlen(str);
+	write (2, str, str_len);
 }

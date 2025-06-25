@@ -14,9 +14,12 @@ LIBFT_DIR = $(UTILS_DIR)/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC =  	cub3d.c \
+		validation/validate_imputs.c \
+		validation/validate_map.c \
 		init/init_app.c \
 		parse/parse_map.c \
-		parse/validate_map.c \
+		error/exit_error.c \
+		error/print_error.c \
 
 UTILS_SRC = get_next_line/get_next_line.c \
 
