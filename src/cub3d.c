@@ -2,5 +2,5 @@
 
 int main()
 {
-    printf("Hello in cub3D game");
+    printf("Hello in cub3D");
 }
