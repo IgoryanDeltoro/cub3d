@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_app.c                                         :+:      :+:    :+:   */
+/*   validate_imputs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/25 13:04:12 by ibondarc         ###   ########.fr       */
+/*   Created: 2025/06/25 12:00:49 by ibondarc          #+#    #+#             */
+/*   Updated: 2025/06/25 13:14:41 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void initial_game(t_game *game)
+void validate_imputs(int ac, char *str)
 {
-	game->fd = -1;
-    game->mlx = NULL;
-	game->win = NULL;
-	game->map = NULL;
-	game->map_width = -1;
-	game->map_height = -1;
-	// game->player_x = -1;
-	// game->player_y = -1;
+    int len;
+    
+    if (ac != 2)
+        exit_with_error(NULL, FD);
+    len = ft_strlen(str);
+    if (ft_strcmp(&str[len - 4], ".cub") != 0) //  || ft_strcmp(str, ".cub") == 0
+        exit_with_error(NULL, WN);
+    if (len < 5 || !ft_strcmp(&str[len - 5], "/.cub"))
+        exit_with_error(NULL, TSN);
 }

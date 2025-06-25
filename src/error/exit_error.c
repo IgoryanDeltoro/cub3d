@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_app.c                                         :+:      :+:    :+:   */
+/*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/25 13:04:12 by ibondarc         ###   ########.fr       */
+/*   Created: 2025/06/25 12:32:54 by ibondarc          #+#    #+#             */
+/*   Updated: 2025/06/25 13:08:06 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void initial_game(t_game *game)
+void exit_with_error(t_game *game, char *error)
 {
-	game->fd = -1;
-    game->mlx = NULL;
-	game->win = NULL;
-	game->map = NULL;
-	game->map_width = -1;
-	game->map_height = -1;
-	// game->player_x = -1;
-	// game->player_y = -1;
+    (void)game;
+    if (error)
+        print_error(error);
+    exit(1);
 }

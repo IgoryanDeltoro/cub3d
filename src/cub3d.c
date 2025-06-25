@@ -1,19 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/25 13:15:49 by ibondarc          #+#    #+#             */
+/*   Updated: 2025/06/25 13:15:49 by ibondarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int main(int ac, char *av[])
 {
     t_game game;
 
-    (void)ac;
-    if (ac != 2)
-        return (printf("There are not right args!\n"), 1);
-    
+    validate_imputs(ac, av[1]);
+    initial_game(&game);
     read_map(&game, av);
-    // check inputs map
-    // init game
-    // read map (&game, av)
-    // validate map
-    // init mlx
-    // call action 
+    init_mlx(&game);
+    
     return (0);
 }
