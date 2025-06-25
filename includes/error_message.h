@@ -6,7 +6,7 @@
 /*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:16:26 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/25 13:16:27 by ibondarc         ###   ########.fr       */
+/*   Updated: 2025/06/25 14:21:10 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,4 @@
 #define	TSN "Error\nThe map name must be more than 4 characters long.\n"
 #define	IFD "Error\nIncorrect file name or permission denied.\n"
 #define	FMP "Error\nFaild map parsing.\n"
-#define	FIM "Error\nFailed to initialize MLX.\n";
+#define	FIM "Error\nFailed to initialize MLX.\n"

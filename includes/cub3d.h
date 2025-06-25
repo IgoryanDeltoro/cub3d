@@ -14,10 +14,19 @@
 # define CUB3D_H
 # include "libft.h"
 # include "error_message.h"
+# include "mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
+
+typedef struct s_texture_path
+{
+	char *NO; 
+	char *SO; 
+	char *WE;
+	char *EA;
+} t_texture_path;
 
 typedef struct s_game
 {
@@ -28,11 +37,15 @@ typedef struct s_game
 	int					map_height;
 	int					player_x;
 	int					player_y;
+	int 				color_f[3]; 
+	int 				color_c[3]; 
+	struct 	s_texture_path	texture;
 }						t_game;
 
 void    validate_imputs(int ac, char *str);
 void    initial_game(t_game *game);
 void	print_error(char *str);
 void    exit_with_error(t_game *game, char *error);
+void	init_mlx(t_game *game);
 
 #endif

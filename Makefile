@@ -6,7 +6,7 @@ NAME  = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
-MLX = -Imlx_linux -lXext -lX11 -lm
+MLX = -lmlx -lXext -lm
 SRC_DIR = src
 OBJ_DIR = obj
 UTILS_DIR = utils
@@ -17,6 +17,7 @@ SRC =  	cub3d.c \
 		validation/validate_imputs.c \
 		validation/validate_map.c \
 		init/init_app.c \
+		init/init_mlx.c \
 		parse/parse_map.c \
 		error/exit_error.c \
 		error/print_error.c \

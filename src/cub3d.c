@@ -18,6 +18,7 @@ int main(int ac, char *av[])
 
     validate_imputs(ac, av[1]);
     initial_game(&game);
-
+    init_mlx(&game);
+    
     return (0);
 }
