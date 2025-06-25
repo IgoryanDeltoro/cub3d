@@ -6,7 +6,7 @@
 /*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/25 13:04:12 by ibondarc         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:27:50 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,4 @@ void initial_game(t_game *game)
 	game->map = NULL;
 	game->map_width = -1;
 	game->map_height = -1;
-	game->player_x = -1;
-	game->player_y = -1;
 }

@@ -20,27 +20,39 @@
 # include <string.h>
 # include <stdlib.h>
 
-typedef struct s_texture_path
+typedef struct s_img 
 {
-	char *NO; 
-	char *SO; 
-	char *WE;
-	char *EA;
-} t_texture_path;
+    void    *img;
+    int     *data;
+    int     width;
+    int     height;
+    int     bpp;
+    int     line_len;
+    int     endian;
+} t_img;
 
-typedef struct s_game
+typedef struct s_player 
 {
-	void				*mlx;
-	void				*win;
-	char				**map;
-	int					map_width;
-	int					map_height;
-	int					player_x;
-	int					player_y;
-	int 				color_f[3]; 
-	int 				color_c[3]; 
-	struct 	s_texture_path	texture;
-}						t_game;
+    double  x;
+    double  y;
+    double  dir_x;
+    double  dir_y;
+    double  plane_x;
+    double  plane_y;
+} t_player;
+
+typedef struct s_game 
+{
+    void        *mlx;
+    void        *win;
+    t_img       textures[4];   // NO, SO, WE, EA
+    int         floor_color;
+    int         ceiling_color;
+    char        **map;
+    int         map_width;
+    int         map_height;
+    t_player    player;
+} t_game;
 
 void    validate_imputs(int ac, char *str);
 void    initial_game(t_game *game);
