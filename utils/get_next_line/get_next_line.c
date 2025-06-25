@@ -5,61 +5,65 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rghazary <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 11:34:13 by rghazary          #+#    #+#             */
-/*   Updated: 2025/06/25 11:34:15 by rghazary         ###   ########.fr       */
+/*   Created: 2024/09/09 11:07:46 by rghazary          #+#    #+#             */
+/*   Updated: 2024/10/17 12:35:15 by rghazary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-#include "../../includes/libft.h"
 
-char	*utils_str_join(char *str1, char *str2)
+char	*ft_control(char **static_str)
 {
-	char	*temp;
-	int		i;
-	int		j;
+	ssize_t	i;
+	char	*str;
+	char	*res;
 
-	i = -1;
-	j = 0;
-	if (!str1 || !str2)
+	i = 0;
+	if (*static_str != NULL)
 	{
-		if (str2)
-			return (free(str2), str2 = NULL, NULL);
-		else if (str1)
-			return (free(str1), str1 = NULL, NULL);
-		else
-			return (NULL);
+		if ((*static_str)[0] == '\0')
+			return (free(*static_str), *static_str = NULL);
+		i = ft_str_chr(*static_str);
+		if (i < 0)
+			return (ft_strdup_g(&res, static_str), res);
+		str = ft_sub_str(&str, &*static_str, i + 1, ft_strlen(*static_str));
+		if (str == NULL)
+			return (free(*static_str), *static_str = NULL, NULL);
+		res = ft_sub_str(&res, static_str, 0, i + 1);
+		if (res == NULL)
+			return (free(str), free(*static_str), *static_str = NULL);
+		free(*static_str);
+		*static_str = NULL;
+		*static_str = str;
+		return (res);
 	}
-	temp = malloc(ft_strlen(str1) + ft_strlen(str2) + 1);
-	if (!temp)
-		return (free(str1), free(str2), str1 = NULL, str2 = NULL, NULL);
-	while (str1[++i])
-		temp[i] = str1[i];
-	while (str2[j])
-		temp[i++] = str2[j++];
-	temp[i] = '\0';
-	(free(str1), free(str2));
-	return (str1 = NULL, str2 = NULL, temp);
+	return (NULL);
 }
 
-char    *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	char    *buf;
-	int     len = 0;
+	static char		*static_str;
+	char			*str_readed;
+	ssize_t			count;
 
-	if (fd < 0)
+	count = 1;
+	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = malloc(2);
-	if (!buf)
-		return (NULL);
-	len = read(fd, buf, 1);
-	if (len < 1)
-		return (free(buf),  NULL);
-	buf[len] = '\0';
-	return (buf);
-}
-
-void	read_map(t_data *data)
-{
-	
+	while (count)
+	{
+		str_readed = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+		if (str_readed == NULL)
+			return (free(static_str), static_str = NULL, NULL);
+		count = read(fd, str_readed, BUFFER_SIZE);
+		if (count < 0)
+			return (free(str_readed), free(static_str), static_str = NULL);
+		if (count > 0)
+		{
+			str_readed[count] = '\0';
+			ft_str_join(&static_str, &str_readed, &count);
+		}
+		else
+			free(str_readed);
+	}
+	return (ft_control(&static_str));
 }

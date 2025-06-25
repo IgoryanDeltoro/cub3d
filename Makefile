@@ -4,7 +4,7 @@ RESET = \033[0m
 
 NAME  = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 MLX = -Imlx_linux -lXext -lX11 -lm
 SRC_DIR = src
