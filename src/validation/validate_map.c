@@ -1,24 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_app.c                                         :+:      :+:    :+:   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/25 13:04:12 by ibondarc         ###   ########.fr       */
+/*   Created: 2025/06/25 13:15:55 by ibondarc          #+#    #+#             */
+/*   Updated: 2025/06/25 13:15:56 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-
-void initial_game(t_game *game)
-{
-    game->mlx = NULL;
-	game->win = NULL;
-	game->map = NULL;
-	game->map_width = -1;
-	game->map_height = -1;
-	game->player_x = -1;
-	game->player_y = -1;
-}
