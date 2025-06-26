@@ -20,5 +20,9 @@ int main(int ac, char *av[])
     initial_game(&game);
     init_mlx(&game);
     
+    if (!parse_cub_file(av[1], &game))
+        exit_with_error(NULL, "Failed to parse .cub file");
+    run_game(&game);
+    
     return (0);
 }

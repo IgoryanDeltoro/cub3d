@@ -14,11 +14,20 @@
 # define CUB3D_H
 # include "libft.h"
 # include "error_message.h"
-# include "mlx.h"
+# include "../utils/minilibx-linux/mlx.h"
+// # include "mlx.h"
 # include <stdio.h>
-# include <unistd.h>
-# include <string.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <math.h>
+# include <string.h>
+
+
+# define WIDTH 1900
+# define HEIGHT 800
+#define MOVE_SPEED 0.05
+#define ROT_SPEED 0.05
 
 typedef struct s_img 
 {
@@ -26,6 +35,7 @@ typedef struct s_img
     int     *data;
     int     width;
     int     height;
+    char	*addr;
     int     bpp;
     int     line_len;
     int     endian;
@@ -48,6 +58,8 @@ typedef struct s_game
     t_img       textures[4];   // NO, SO, WE, EA
     int         floor_color;
     int         ceiling_color;
+    int         screen_width;
+    int         screen_height;
     char        **map;
     int         map_width;
     int         map_height;
@@ -59,5 +71,19 @@ void    initial_game(t_game *game);
 void	print_error(char *str);
 void    exit_with_error(t_game *game, char *error);
 void	init_mlx(t_game *game);
+void	load_texture(t_game *game, t_img *tex, char *path);
+void	init_textures(t_game *game);
+
+
+// MAIN FUNCTIONS
+int     parse_cub_file(char *file, t_game *game);
+int     run_game(t_game *game);
+int    render_map(void *game);
+
+
+// UTILS
+void    error_exit(const char *msg);
+char    *get_next_line(int fd);
+int     rgb_to_int(int r, int g, int b);
 
 #endif
