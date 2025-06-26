@@ -4,11 +4,11 @@ RESET = \033[0m
 
 NAME  = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
-MLX_DIR = utils/minilibx-linux
-MLX = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-# MLX = -lmlx -lXext -lm
+# MLX_DIR = utils/minilibx-linux
+# MLX = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+MLX = -lmlx -lXext -lm
 SRC_DIR = src
 OBJ_DIR = obj
 UTILS_DIR = utils
@@ -20,6 +20,8 @@ SRC =  	cub3d.c \
 		validation/validate_map.c \
 		init/init_app.c \
 		init/init_mlx.c \
+		game_execution/run_game.c \
+		game_execution/listeners.c \
 		parse/parse_map.c \
 		render/render_map.c \
 		error/exit_error.c \
@@ -35,7 +37,7 @@ UTILS_OBJ = $(UTILS_SRC:$(UTILS_DIR)/%.c=$(OBJ_DIR)/%.o)
 all: $(OBJ_DIR) $(NAME)
 $(NAME): $(OBJ) $(UTILS_OBJ) 
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(MAKE) -C $(MLX_DIR)        
+	        
 	@$(CC) $(CFLAGS) $(OBJ) $(UTILS_OBJ) -o $(NAME) $(LIBFT) $(MLX)
 	@echo "$(GREEN)Compilation Successful.$(RESET)"
 $(OBJ_DIR):

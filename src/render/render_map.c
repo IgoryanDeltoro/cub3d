@@ -8,8 +8,9 @@ void draw_vertical_line(t_game *game, int x, int start, int end, int color)
 
 int	render_map(void *param)
 {
-    t_game *game = (t_game *)param;
+	t_game *game = (t_game *)param;
 	int x = 0;
+
 	while (x < WIDTH)
 	{
 		double camera_x = 2 * x / (double)WIDTH - 1;
@@ -19,18 +20,10 @@ int	render_map(void *param)
 		int map_x = (int)game->player.x;
 		int map_y = (int)game->player.y;
 
-		double side_dist_x;
-		double side_dist_y;
-
 		double delta_dist_x = fabs(1 / ray_dir_x);
 		double delta_dist_y = fabs(1 / ray_dir_y);
-		double perp_wall_dist;
-
-		int step_x;
-		int step_y;
-
-		int hit = 0;
-		int side;
+		double side_dist_x, side_dist_y;
+		int step_x, step_y, hit = 0, side;
 
 		if (ray_dir_x < 0)
 		{
@@ -53,7 +46,7 @@ int	render_map(void *param)
 			side_dist_y = (map_y + 1.0 - game->player.y) * delta_dist_y;
 		}
 
-		while (hit == 0)
+		while (!hit)
 		{
 			if (side_dist_x < side_dist_y)
 			{
@@ -71,10 +64,9 @@ int	render_map(void *param)
 				hit = 1;
 		}
 
-		if (side == 0)
-			perp_wall_dist = (map_x - game->player.x + (1 - step_x) / 2) / ray_dir_x;
-		else
-			perp_wall_dist = (map_y - game->player.y + (1 - step_y) / 2) / ray_dir_y;
+		double perp_wall_dist = (side == 0)
+			? (map_x - game->player.x + (1 - step_x) / 2) / ray_dir_x
+			: (map_y - game->player.y + (1 - step_y) / 2) / ray_dir_y;
 
 		int line_height = (int)(HEIGHT / perp_wall_dist);
 		int draw_start = -line_height / 2 + HEIGHT / 2;
@@ -82,20 +74,38 @@ int	render_map(void *param)
 		int draw_end = line_height / 2 + HEIGHT / 2;
 		if (draw_end >= HEIGHT) draw_end = HEIGHT - 1;
 
-		// Pick color (you can replace with texture later)
-		int color = (side == 1) ? 0xAAAAAA : 0xFFFFFF;
+		// Pick texture
+		int tex_index = (side == 0)
+			? (ray_dir_x > 0 ? 2 : 3)
+			: (ray_dir_y > 0 ? 1 : 0);
 
-		int y = 0;
-		while (y < HEIGHT)
+		t_textures *tex = &game->textures[tex_index];
+
+		// Calculate exact wall hit point
+		double wall_x = (side == 0)
+			? game->player.y + perp_wall_dist * ray_dir_y
+			: game->player.x + perp_wall_dist * ray_dir_x;
+		wall_x -= floor(wall_x);
+		int tex_x = (int)(wall_x * tex->width);
+		if ((side == 0 && ray_dir_x > 0) || (side == 1 && ray_dir_y < 0))
+			tex_x = tex->width - tex_x - 1;
+
+		// Draw the vertical stripe
+		for (int y = 0; y < HEIGHT; y++)
 		{
 			if (y < draw_start)
 				mlx_pixel_put(game->mlx, game->win, x, y, game->ceiling_color);
-			else if (y > draw_end)
-				mlx_pixel_put(game->mlx, game->win, x, y, game->floor_color);
-			else
+			else if (y >= draw_start && y <= draw_end)
+			{
+				int d = y * 256 - HEIGHT * 128 + line_height * 128;
+				int tex_y = ((d * tex->height) / line_height) / 256;
+				int color = tex->data[tex->width * tex_y + tex_x];
 				mlx_pixel_put(game->mlx, game->win, x, y, color);
-			y++;
+			}
+			else
+				mlx_pixel_put(game->mlx, game->win, x, y, game->floor_color);
 		}
+
 		x++;
 	}
 	return (0);

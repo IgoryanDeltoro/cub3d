@@ -3,34 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:15:47 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/25 22:11:12 by marvin           ###   ########.fr       */
+/*   Updated: 2025/06/26 13:15:28 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+bool	load_texture(t_game *game, t_textures *tex, char *path)
+{
+	tex->img = mlx_xpm_file_to_image(game->mlx, path, &tex->width, &tex->height);
+	if (!tex->img)
+		return false;
+	tex->data = (int *)mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
+	if (!tex->data)
+		return false;
+	return true;
+}
+bool	init_textures(t_game *game)
+{
+	if (!load_texture(game, &game->textures[1], "./assets/textures/wall.xpm"))
+		return false;
+	if (!load_texture(game, &game->textures[0], "./assets/textures/wall.xpm"))
+		return false;
+	if (!load_texture(game, &game->textures[2], "./assets/textures/wall.xpm"))
+		return false;
+	if (!load_texture(game, &game->textures[3], "./assets/textures/wall.xpm"))
+		return false;
+	return true;
+}
 
 void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		exit_with_error(NULL, FIM);
-}
-
-void	load_texture(t_game *game, t_img *tex, char *path)
-{
-	tex->img = mlx_xpm_file_to_image(game->mlx, path, &tex->width, &tex->height);
-	if (!tex->img)
-		exit_with_error(NULL, "Failed to load texture");
-
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
-}
-void	init_textures(t_game *game)
-{
-	load_texture(game, &game->textures[1], "../../assets/textures/wall.xpm");
-	load_texture(game, &game->textures[0], "../../assets/textures/wall.xpm");
-	load_texture(game, &game->textures[2], "../../assets/textures/wall.xpm");
-	load_texture(game, &game->textures[3], "../../assets/textures/wall.xpm");
+	if (!init_textures(game))
+		exit_with_error(NULL, FLT);
 }

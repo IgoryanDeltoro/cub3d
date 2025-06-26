@@ -14,8 +14,8 @@
 # define CUB3D_H
 # include "libft.h"
 # include "error_message.h"
-# include "../utils/minilibx-linux/mlx.h"
-// # include "mlx.h"
+// # include "../utils/minilibx-linux/mlx.h"
+# include "mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -26,20 +26,20 @@
 
 # define WIDTH 1900
 # define HEIGHT 800
-#define MOVE_SPEED 0.05
-#define ROT_SPEED 0.05
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.05
 
-typedef struct s_img 
+typedef struct s_textures 
 {
     void    *img;
     int     *data;
     int     width;
     int     height;
-    char	*addr;
+    // char	*addr;
     int     bpp;
     int     line_len;
     int     endian;
-} t_img;
+} t_textures;
 
 typedef struct s_player 
 {
@@ -53,9 +53,9 @@ typedef struct s_player
 
 typedef struct s_game 
 {
+    t_textures  textures[4];   // NO, SO, WE, EA
     void        *mlx;
     void        *win;
-    t_img       textures[4];   // NO, SO, WE, EA
     int         floor_color;
     int         ceiling_color;
     int         screen_width;
@@ -71,8 +71,9 @@ void    initial_game(t_game *game);
 void	print_error(char *str);
 void    exit_with_error(t_game *game, char *error);
 void	init_mlx(t_game *game);
-void	load_texture(t_game *game, t_img *tex, char *path);
-void	init_textures(t_game *game);
+int     close_game(t_game *game);
+int     handle_button_listeners(int keycode, t_game *game);
+int     run_game(t_game *game);
 
 
 // MAIN FUNCTIONS
