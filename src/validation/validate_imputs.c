@@ -12,10 +12,13 @@
 
 #include "../../includes/cub3d.h"
 
-void validate_imputs(int ac, char *str)
+void validate_imputs(t_game *game, int ac, char *str)
 {
-    int len;
+    int     len;
     
+    (void)str;
+    (void)ac;
+    //  "../../assets/maps/invalid_map.cub"
     if (ac != 2)
         exit_with_error(NULL, FD);
     len = ft_strlen(str);
@@ -23,4 +26,7 @@ void validate_imputs(int ac, char *str)
         exit_with_error(NULL, WN);
     if (len < 5 || !ft_strcmp(&str[len - 5], "/.cub"))
         exit_with_error(NULL, TSN);
+    game->fd = open(str, O_RDONLY);
+    if (game->fd < 0)
+         exit_with_error(NULL, NVP);
 }

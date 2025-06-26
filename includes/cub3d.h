@@ -68,11 +68,13 @@ typedef struct	s_game
 
 char	*get_next_line(int fd);
 
-void	validate_imputs(int ac, char *str);
+void	validate_imputs(t_game *game, int ac, char *str);
 void	initial_game(t_game *game);
 void	print_error(char *str);
 void	exit_with_error(t_game *game, char *error);
 void	init_mlx(t_game *game);
-int		read_map(t_game *data, char **av);
+int		read_map(t_game *data);
+void	free_2d(char **str);
+void    free_game(t_game *game);
 
 #endif
