@@ -27,7 +27,7 @@
 
 # endif
 
-typedef struct	s_img 
+typedef struct	s_img
 {
 	void	*img;
 	int		*data;
@@ -57,6 +57,10 @@ typedef struct	s_game
 	int			floor_color[3];
 	int			ceiling_color[3];
 	char		**map;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
 	int			map_width;
 	int			map_height;
 	t_player	player;

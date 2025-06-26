@@ -14,6 +14,10 @@
 
 void initial_game(t_game *game)
 {
+	game->no = NULL;
+	game->ea = NULL;
+	game->so = NULL;
+	game->we = NULL;
 	game->fd = -1;
     game->mlx = NULL;
 	game->win = NULL;

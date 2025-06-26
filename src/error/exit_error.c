@@ -14,7 +14,7 @@
 
 void exit_with_error(t_game *game, char *error)
 {
-    (void)game;
+    close(game->fd);
     if (error)
         print_error(error);
     exit(1);

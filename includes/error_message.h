@@ -24,3 +24,4 @@
 #define	IFD "Error\nIncorrect file name or permission denied.\n"
 #define	FMP "Error\nFaild map parsing.\n"
 #define	FIM "Error\nFailed to initialize MLX.\n"
+#define	MAL "Error\nMalloc allocation failed\n"
