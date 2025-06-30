@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghazary <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:07:46 by rghazary          #+#    #+#             */
-/*   Updated: 2024/10/17 12:35:15 by rghazary         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:57:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,10 @@ int	pars_map_1(t_game *game, int i, int *n)
 				return (2);
 		}
 	}
+	game->player.dir_x = -1;
+    game->player.dir_y = 0;
+    game->player.plane_x = 0;
+    game->player.plane_y = 0.66;
 	return (0);
 }
 

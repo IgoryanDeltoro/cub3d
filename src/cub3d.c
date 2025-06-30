@@ -19,11 +19,9 @@ int	main(int ac, char *av[])
 	(void)ac;
 	initial_game(&game);
 	validate_imputs(&game, ac, av[1]);
-	
-	
-	init_mlx(&game); 
-	
 	read_map(&game);
+	init_mlx(&game); 
+    run_game(&game);
 	for (int i = 0; game.map[i]; i++)
 	{
 		printf("%s\n", game.map[i]);

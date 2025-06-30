@@ -16,27 +16,37 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "error_message.h"
-# include "mlx.h"
+# include "../utils/minilibx-linux/mlx.h"
+// # include "mlx.h"
 # include <stdio.h>
-# include <unistd.h>
-# include <string.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include <math.h>
+# include <string.h>
+
+
+# define WIDTH 1900
+# define HEIGHT 800
+# define MOVE_SPEED 0.05
+# define ROT_SPEED 0.05
+# define COLL_MARGIN 0.5
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
 
-# endif
+# 	endif
 
-typedef struct s_img
+typedef struct s_textures 
 {
-	void	*img;
-	int		*data;
-	int		width;
-	int		height;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}			t_img;
+    void    *img;
+    int     *data;
+    int     width;
+    int     height;
+    int     bpp;
+    int     line_len;
+    int     endian;
+} t_textures;
 
 typedef struct s_player
 {
@@ -53,7 +63,7 @@ typedef struct s_game
 	int			fd;
 	void		*mlx;
 	void		*win;
-	t_img		textures[4];
+	t_textures	textures[4];
 	int			floor_color[3];
 	int			ceiling_color[3];
 	char		**map;
@@ -70,6 +80,23 @@ void	initial_game(t_game *game);
 void	print_error(char *str);
 int		exit_with_error(t_game *game, char *error);
 void	init_mlx(t_game *game);
+int     close_game(t_game *game);
+int     handle_button_listeners(int keycode, t_game *game);
+void    run_game(t_game *game);
+void    move_forward(t_game *game);
+void    move_backward(t_game *game);
+void    move_left(t_game *game);
+void    move_right(t_game *game);
+
+// MAIN FUNCTIONS
+int     parse_cub_file(char *file, t_game *game);
+int    render_map(void *game);
+
+
+// UTILS
+void    error_exit(const char *msg);
+char    *get_next_line(int fd);
+int     rgb_to_int(int r, int g, int b);
 
 /////////////  get_next_line ///////////
 char	*get_next_line(int fd);
