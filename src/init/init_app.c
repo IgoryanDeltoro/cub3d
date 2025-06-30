@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_app.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/26 13:21:54 by ibondarc         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:49:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ void initial_textures(t_textures *textures)
 	textures->line_len = 0;
 	textures->endian = 0;
 }
-void initial_game(t_game *game)
+void	initial_game(t_game *game)
 {
-    game->mlx = NULL;
+	game->no = NULL;
+	game->ea = NULL;
+	game->so = NULL;
+	game->we = NULL;
+	game->fd = -1;
+	game->mlx = NULL;
 	game->win = NULL;
 	game->map = NULL;
 	game->map_width = 0;

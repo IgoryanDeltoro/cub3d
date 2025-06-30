@@ -12,17 +12,19 @@
 
 #include "../includes/cub3d.h"
 
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
-    t_game game;
+	t_game	game;
 
-    validate_imputs(ac, av[1]);
-    initial_game(&game);
-    init_mlx(&game);
-    
-    if (!parse_cub_file(av[1], &game))
-        exit_with_error(NULL, "Failed to parse .cub file");
+	(void)ac;
+	initial_game(&game);
+	validate_imputs(&game, ac, av[1]);
+	read_map(&game);
+	init_mlx(&game); 
     run_game(&game);
-    
-    return (0);
+	for (int i = 0; game.map[i]; i++)
+	{
+		printf("%s\n", game.map[i]);
+	}
+	return (free_game(&game), 0);
 }

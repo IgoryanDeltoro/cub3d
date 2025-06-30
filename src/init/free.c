@@ -1,12 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map.c                                     :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 13:15:55 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/25 13:15:56 by ibondarc         ###   ########.fr       */
+/*   Created: 2024/09/09 11:07:46 by rghazary          #+#    #+#             */
+/*   Updated: 2025/06/30 14:38:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/cub3d.h"
+
+void	free_2d(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return ;
+	while (str[i])
+	{
+		if (str[i])
+			free(str[i]);
+		i++;
+	}
+	free(str);
+	str = NULL;
+}

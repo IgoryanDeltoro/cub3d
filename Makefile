@@ -16,19 +16,21 @@ LIBFT_DIR = $(UTILS_DIR)/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC =  	cub3d.c \
-		validation/validate_imputs.c \
-		validation/validate_map.c \
 		init/init_app.c \
 		init/init_mlx.c \
 		game_execution/run_game.c \
 		game_execution/listeners.c \
 		game_execution/actions.c \
-		parse/parse_map.c \
+		init/free.c \
+		parse/pars_map.c \
 		render/render_map.c \
+		parse/pars_collor.c \
+		parse/pars_texture.c \
 		error/exit_error.c \
 		error/print_error.c \
 
 UTILS_SRC = get_next_line/get_next_line.c \
+			get_next_line/utils.c \
 
 SRC := $(addprefix $(SRC_DIR)/, $(SRC))
 UTILS_SRC := $(addprefix $(UTILS_DIR)/, $(UTILS_SRC))

@@ -1,11 +1,9 @@
 #include "../../includes/cub3d.h"
 
-void draw_vertical_line(t_game *game, int x, int start, int end, int color)
+int rgb_to_int(int r, int g, int b)
 {
-    for (int y = start; y <= end; y++)
-        mlx_pixel_put(game->mlx, game->win, x, y, color);
+    return (r << 16 | g << 8 | b);
 }
-
 int	render_map(void *param)
 {
 	t_game *game = (t_game *)param;
@@ -93,8 +91,11 @@ int	render_map(void *param)
 		// Draw the vertical stripe
 		for (int y = 0; y < HEIGHT; y++)
 		{
+			int *f_color = game->floor_color;
+			int *c_color = game->ceiling_color;
+
 			if (y < draw_start)
-				mlx_pixel_put(game->mlx, game->win, x, y, game->ceiling_color);
+				mlx_pixel_put(game->mlx, game->win, x, y, rgb_to_int(c_color[0], c_color[1], c_color[2]));
 			else if (y >= draw_start && y <= draw_end)
 			{
 				int d = y * 256 - HEIGHT * 128 + line_height * 128;
@@ -103,7 +104,7 @@ int	render_map(void *param)
 				mlx_pixel_put(game->mlx, game->win, x, y, color);
 			}
 			else
-				mlx_pixel_put(game->mlx, game->win, x, y, game->floor_color);
+				mlx_pixel_put(game->mlx, game->win, x, y, rgb_to_int(f_color[0], f_color[1], f_color[2]));
 		}
 
 		x++;

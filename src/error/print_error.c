@@ -14,8 +14,8 @@
 
 void	print_error(char *str)
 {
-	int str_len;
-	
+	int	str_len;
+
 	if (!str)
 		return ;
 	str_len = ft_strlen(str);
