@@ -14,8 +14,8 @@
 # define CUB3D_H
 # include "libft.h"
 # include "error_message.h"
-// # include "../utils/minilibx-linux/mlx.h"
-# include "mlx.h"
+# include "../utils/minilibx-linux/mlx.h"
+// # include "mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -28,6 +28,7 @@
 # define HEIGHT 800
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.05
+# define COLL_MARGIN 0.5
 
 typedef struct s_textures 
 {
@@ -73,12 +74,14 @@ void    exit_with_error(t_game *game, char *error);
 void	init_mlx(t_game *game);
 int     close_game(t_game *game);
 int     handle_button_listeners(int keycode, t_game *game);
-int     run_game(t_game *game);
-
+void    run_game(t_game *game);
+void    move_forward(t_game *game);
+void    move_backward(t_game *game);
+void    move_left(t_game *game);
+void    move_right(t_game *game);
 
 // MAIN FUNCTIONS
 int     parse_cub_file(char *file, t_game *game);
-int     run_game(t_game *game);
 int    render_map(void *game);
 
 

@@ -3,83 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   listeners.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:04:10 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/26 12:07:42 by ibondarc         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:24:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+void rotate_right(t_game *game)
+{
+    double prev_dir_x;
+    double prev_plane_x;
+    
+    prev_dir_x = game->player.dir_x;
+    game->player.dir_x = game->player.dir_x * cos(-ROT_SPEED) - game->player.dir_y * sin(-ROT_SPEED);
+    game->player.dir_y = prev_dir_x * sin(-ROT_SPEED) + game->player.dir_y * cos(-ROT_SPEED);
+    prev_plane_x = game->player.plane_x;
+    game->player.plane_x = game->player.plane_x * cos(-ROT_SPEED) - game->player.plane_y * sin(-ROT_SPEED);
+    game->player.plane_y = prev_plane_x * sin(-ROT_SPEED) + game->player.plane_y * cos(-ROT_SPEED);
+}
+
+void rotate_left(t_game *game)
+{
+    double prev_dir_x;
+    double prev_plane_x;
+    
+    prev_dir_x = game->player.dir_x;
+    game->player.dir_x = game->player.dir_x * cos(ROT_SPEED) - game->player.dir_y * sin(ROT_SPEED);
+    game->player.dir_y = prev_dir_x * sin(ROT_SPEED) + game->player.dir_y * cos(ROT_SPEED);
+    prev_plane_x = game->player.plane_x;
+    game->player.plane_x = game->player.plane_x * cos(ROT_SPEED) - game->player.plane_y * sin(ROT_SPEED);
+    game->player.plane_y = prev_plane_x * sin(ROT_SPEED) + game->player.plane_y * cos(ROT_SPEED);
+}
+
 int handle_button_listeners(int keycode, t_game *game)
 {
-    double old_dir_x, old_plane_x;
-
     if (keycode == 65307)
-        close_game(game); // your cleanup + exit function
-
-    // Move forward
-    if (keycode == 65362 || keycode == 119)
-    {
-        if (game->map[(int)(game->player.y)][(int)(game->player.x + game->player.dir_x * MOVE_SPEED)] != '1')
-            game->player.x += game->player.dir_x * MOVE_SPEED;
-        if (game->map[(int)(game->player.y + game->player.dir_y * MOVE_SPEED)][(int)(game->player.x)] != '1')
-            game->player.y += game->player.dir_y * MOVE_SPEED;
-    }
-
-    // Move backward
-    if (keycode == 65364 || keycode == 115)
-    {
-        if (game->map[(int)(game->player.y)][(int)(game->player.x - game->player.dir_x * MOVE_SPEED)] != '1')
-            game->player.x -= game->player.dir_x * MOVE_SPEED;
-        if (game->map[(int)(game->player.y - game->player.dir_y * MOVE_SPEED)][(int)(game->player.x)] != '1')
-            game->player.y -= game->player.dir_y * MOVE_SPEED;
-    }
-
-    // Move left (strafe)
-    // if (keycode == XK_a)
-    // {
-    //     double perp_x = -game->player.dir_y;
-    //     double perp_y = game->player.dir_x;
-    //     if (game->map[(int)(game->player.y)][(int)(game->player.x + perp_x * MOVE_SPEED)] != '1')
-    //         game->player.x += perp_x * MOVE_SPEED;
-    //     if (game->map[(int)(game->player.y + perp_y * MOVE_SPEED)][(int)(game->player.x)] != '1')
-    //         game->player.y += perp_y * MOVE_SPEED;
-    // }
-
-    // // Move right (strafe)
-    // if (keycode == XK_d)
-    // {
-    //     double perp_x = game->player.dir_y;
-    //     double perp_y = -game->player.dir_x;
-    //     if (game->map[(int)(game->player.y)][(int)(game->player.x + perp_x * MOVE_SPEED)] != '1')
-    //         game->player.x += perp_x * MOVE_SPEED;
-    //     if (game->map[(int)(game->player.y + perp_y * MOVE_SPEED)][(int)(game->player.x)] != '1')
-    //         game->player.y += perp_y * MOVE_SPEED;
-    // }
-
-    // Rotate right
-    if (keycode == 65363 || keycode == 100)
-    {
-        old_dir_x = game->player.dir_x;
-        game->player.dir_x = game->player.dir_x * cos(-ROT_SPEED) - game->player.dir_y * sin(-ROT_SPEED);
-        game->player.dir_y = old_dir_x * sin(-ROT_SPEED) + game->player.dir_y * cos(-ROT_SPEED);
-        old_plane_x = game->player.plane_x;
-        game->player.plane_x = game->player.plane_x * cos(-ROT_SPEED) - game->player.plane_y * sin(-ROT_SPEED);
-        game->player.plane_y = old_plane_x * sin(-ROT_SPEED) + game->player.plane_y * cos(-ROT_SPEED);
-    }
-
-    // Rotate left
-    if (keycode == 65361 || keycode == 97)
-    {
-        old_dir_x = game->player.dir_x;
-        game->player.dir_x = game->player.dir_x * cos(ROT_SPEED) - game->player.dir_y * sin(ROT_SPEED);
-        game->player.dir_y = old_dir_x * sin(ROT_SPEED) + game->player.dir_y * cos(ROT_SPEED);
-        old_plane_x = game->player.plane_x;
-        game->player.plane_x = game->player.plane_x * cos(ROT_SPEED) - game->player.plane_y * sin(ROT_SPEED);
-        game->player.plane_y = old_plane_x * sin(ROT_SPEED) + game->player.plane_y * cos(ROT_SPEED);
-    }
-
+        close_game(game);
+    else if (keycode == 65362 || keycode == 119)
+        move_forward(game);
+    else if (keycode == 65364 || keycode == 115)
+        move_backward(game);
+    else if (keycode == 65361)
+        move_left(game);
+    else if (keycode == 65363)
+        move_right(game);
+    else if (keycode == 100)
+        rotate_right(game);
+    else if (keycode == 97)
+        rotate_left(game);
     return (0);
 }

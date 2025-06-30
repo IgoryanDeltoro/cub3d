@@ -6,9 +6,9 @@ NAME  = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
-# MLX_DIR = utils/minilibx-linux
-# MLX = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-MLX = -lmlx -lXext -lm
+MLX_DIR = utils/minilibx-linux
+MLX = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+# MLX = -lmlx -lXext -lm
 SRC_DIR = src
 OBJ_DIR = obj
 UTILS_DIR = utils
@@ -22,6 +22,7 @@ SRC =  	cub3d.c \
 		init/init_mlx.c \
 		game_execution/run_game.c \
 		game_execution/listeners.c \
+		game_execution/actions.c \
 		parse/parse_map.c \
 		render/render_map.c \
 		error/exit_error.c \

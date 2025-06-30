@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:00:14 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/26 13:25:59 by ibondarc         ###   ########.fr       */
+/*   Updated: 2025/06/26 15:33:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ void run_game(t_game *game)
     mlx_hook(game->win, 17, 0, close_game, game);   
     mlx_loop_hook(game->mlx, render_map, game);
     mlx_loop(game->mlx);
-    return 1;
 }
