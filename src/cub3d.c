@@ -12,20 +12,21 @@
 
 #include "../includes/cub3d.h"
 
-int main(int ac, char *av[])
+int	main(int ac, char *av[])
 {
-    t_game game;
-    (void)ac;
-    
-    initial_game(&game);
-    validate_imputs(&game, ac, av[1]);
-    read_map(&game);
-    for (int i = 0; game.map[i]; i++)
-    {
-       printf("%s\n", game.map[i]);
-    }
-    
-   init_mlx(&game);
-    
-    return (free_game(&game), 0);
+	t_game	game;
+
+	(void)ac;
+	initial_game(&game);
+	validate_imputs(&game, ac, av[1]);
+	
+	
+	init_mlx(&game); 
+	
+	read_map(&game);
+	for (int i = 0; game.map[i]; i++)
+	{
+		printf("%s\n", game.map[i]);
+	}
+	return (free_game(&game), 0);
 }

@@ -6,7 +6,7 @@ NAME  = cub3D
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
-MLX = -lmlx -lXext -lm
+MLX = -lmlx -lXext -lX11 -lm
 SRC_DIR = src
 OBJ_DIR = obj
 UTILS_DIR = utils
@@ -14,15 +14,17 @@ LIBFT_DIR = $(UTILS_DIR)/libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC =  	cub3d.c \
-		validation/validate_imputs.c \
-		validation/validate_map.c \
 		init/init_app.c \
 		init/init_mlx.c \
-		parse/parse_map.c \
+		init/free.c \
+		parse/pars_map.c \
+		parse/pars_collor.c \
+		parse/pars_texture.c \
 		error/exit_error.c \
 		error/print_error.c \
 
 UTILS_SRC = get_next_line/get_next_line.c \
+			get_next_line/utils.c \
 
 SRC := $(addprefix $(SRC_DIR)/, $(SRC))
 UTILS_SRC := $(addprefix $(UTILS_DIR)/, $(UTILS_SRC))

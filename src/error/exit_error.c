@@ -12,26 +12,28 @@
 
 #include "../../includes/cub3d.h"
 
-void    free_game(t_game *game)
+int	free_game(t_game *game)
 {
-    close(game->fd);
-    if (game->map)
-        free_2d(game->map);
-    if (game->no)
-        free(game->no);
-     if (game->ea)
-        free(game->ea);
-     if (game->so)
-        free(game->so);
-     if (game->we)
-        free(game->we);
+	close(game->fd);
+	if (game->map)
+		free_2d(game->map);
+	if (game->no)
+		free(game->no);
+	if (game->ea)
+		free(game->ea);
+	if (game->so)
+		free(game->so);
+	if (game->we)
+		free(game->we);
+	return (0);
 }
 
-void exit_with_error(t_game *game, char *error)
+int	exit_with_error(t_game *game, char *error)
 {
-    if (game)
-        free_game(game);
-    if (error)
-        print_error(error);
-    exit(1);
+	if (game)
+		free_game(game);
+	if (error)
+		print_error(error);
+	exit(1);
+	return (0);
 }

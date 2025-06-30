@@ -12,20 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-ssize_t	ft_str_chr(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\n')
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
 char	*ft_strdup_g(char **dest, char **src)
 {
 	int		i;
