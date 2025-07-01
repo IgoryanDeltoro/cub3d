@@ -58,6 +58,31 @@ typedef struct s_player
 	double	plane_y;
 }			t_player;
 
+typedef struct s_ray_cast
+{
+	// double 	camera_x;
+	double 	ray_dir_x;
+	double 	ray_dir_y;
+	double 	delta_dist_x;
+	double 	delta_dist_y;
+	double 	side_dist_x;
+	double	side_dist_y;
+	double 	perp_wall_dist;
+	double 	wall_x;
+	int 	map_x;
+	int 	map_y;
+	int 	tex_index;
+	int 	line_height;
+	int 	draw_start;
+	int 	draw_end;
+	int 	step_x;
+	int		step_y;
+	// int 	hit;
+	int 	side;
+	int 	tex_x;
+
+}			t_ray_cast;
+
 typedef struct s_game 
 {
 	int			fd;
@@ -74,6 +99,7 @@ typedef struct s_game
 	int			map_width;
 	int			map_height;
 	t_player	player;
+	t_ray_cast  ray_c;
 }				t_game;
 
 void	initial_game(t_game *game);

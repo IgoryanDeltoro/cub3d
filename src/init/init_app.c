@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_app.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/06/30 13:49:28 by marvin           ###   ########.fr       */
+/*   Updated: 2025/07/01 16:12:21 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,29 @@ void initial_textures(t_textures *textures)
 	textures->line_len = 0;
 	textures->endian = 0;
 }
+
+void initial_ray_cast(t_game *game)
+{
+	game->ray_c.ray_dir_x = 0;
+	game->ray_c.ray_dir_y = 0;
+	game->ray_c.delta_dist_x = 0;
+	game->ray_c.delta_dist_y = 0;
+	game->ray_c.side_dist_x = 0;
+	game->ray_c.side_dist_y = 0;
+	game->ray_c.perp_wall_dist = 0;
+	game->ray_c.wall_x = 0;
+	game->ray_c.map_x = 0;
+	game->ray_c.map_y = 0;
+	game->ray_c.tex_index = 0;
+	game->ray_c.line_height = 0;
+	game->ray_c.draw_start = 0;
+	game->ray_c.draw_end = 0;
+	game->ray_c.step_x = 0;
+	game->ray_c.step_y = 0;
+	game->ray_c.side = 0;
+	game->ray_c.tex_x = 0;
+}
+
 void	initial_game(t_game *game)
 {
 	game->no = NULL;
@@ -46,4 +69,5 @@ void	initial_game(t_game *game)
 	game->map_height = 0;
 	initial_player(&game->player);
 	initial_textures(game->textures);
+	initial_ray_cast(game);
 }

@@ -22,9 +22,9 @@ int	main(int ac, char *av[])
 	read_map(&game);
 	init_mlx(&game); 
     run_game(&game);
-	for (int i = 0; game.map[i]; i++)
-	{
-		printf("%s\n", game.map[i]);
-	}
+	// for (int i = 0; game.map[i]; i++)
+	// {
+	// 	printf("%s\n", game.map[i]);
+	// }
 	return (free_game(&game), 0);
 }
