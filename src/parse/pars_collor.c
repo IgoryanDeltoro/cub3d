@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+///  ///////////////////////////////////////////
 
 int	pars_check_valid_collor(char *str)
 {
@@ -62,6 +63,7 @@ int	pars_init_collor_2(int *value , char **res)
 	int j;
 
 	i = -1;
+	
 	while (res[++i])
 	{
 		num = ft_atoi(res[i]);
@@ -103,17 +105,17 @@ int	pars_init_collor(t_game *game, char **collor)
 
 	i = -1;
 	if (pars_check_comma(collor[1]))
-		return (free_2d(collor), exit_with_error(game, ICM));
+		return (free_2d(collor), exit_with_error(game, CCM));
 	res = ft_split(collor[1], ',');
 	if (!res)
-		(free_2d(collor), exit_with_error(game, ICM));
+		(free_2d(collor), exit_with_error(game, CCM));
 	while (res[++i])
 	{
 		if (pars_check_valid_collor(res[i]))
-			return (free_2d(res), free_2d(collor), exit_with_error(game, ICM));
+			return (free_2d(res), free_2d(collor), exit_with_error(game, CCM));
 	}
-	if (i > 3 || pars_init_collor_1(game, collor, res))
-		return (free_2d(res), free_2d(collor), exit_with_error(game, ICM));
+	if (i != 3 || pars_init_collor_1(game, collor, res))
+		return (free_2d(res), free_2d(collor), exit_with_error(game, CCM));
 	return (free_2d(res), 0);
 }
 

@@ -50,7 +50,7 @@ int	read_map(t_game *game)
 		else
 			free(temp);
 	}
-	if (map_str && pars_map(game, map_str))
+	if (pars_map(game, map_str))
 		(free(map_str), exit_with_error(game, ICM));
 	return (free(map_str), 0);
 }

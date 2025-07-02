@@ -113,6 +113,8 @@ int	pars_map(t_game *game, char *map_str)
 
 	i = -1;
 	n = 0;
+	if (map_str == NULL)
+		return (1);
 	game->map = ft_split(map_str, '\n');
 	if (!game->map)
 		(free(map_str), exit_with_error(game, MAL));
