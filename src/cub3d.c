@@ -20,14 +20,11 @@ int	main(int ac, char *av[])
 	initial_game(&game);
 	validate_imputs(&game, ac, av[1]);
 	read_map(&game);
-	//init_mlx(&game); 
-   // run_game(&game);
+	init_mlx(&game); 
+    run_game(&game);
 	// for (int i = 0; game.map[i]; i++)
 	// {
-		//printf("%s\n", game.map[i]);
-		printf("%d\n", game.ceiling_color);
-		printf("%d\n", game.floor_color);
-
-	//}
+	// 	printf("%s\n", game.map[i]);
+	// }
 	return (free_game(&game), 0);
 }

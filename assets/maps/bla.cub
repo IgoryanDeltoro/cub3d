@@ -1,13 +1,20 @@
-NO ./assets/textures/philwall.xpm
-SO ./assets/textures/philwall.xpm
-WE ./assets/textures/philwall.xpm
-EA ./assets/textures/philwall.xpm
+NO ./assets/textures/wall_3.xpm
+SO ./assets/textures/wall_3.xpm
+WE ./assets/textures/wall_3.xpm
+EA ./assets/textures/wall_3.xpm
 
-F 246,220,189
-C 135,   206 ,  235
+F 100,100,100
+C 50,50,50
 
 111111
-111111
-11N011
-111111
+100101
+100001
+1000N1
+100001
+100001
+100001
+100011
+100001
+100001
+100001
 111111
