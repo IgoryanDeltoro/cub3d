@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_app.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/07/01 16:12:21 by ibondarc         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:51:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void initial_ray_cast(t_game *game)
 	game->ray_c.side_dist_x = 0;
 	game->ray_c.side_dist_y = 0;
 	game->ray_c.perp_wall_dist = 0;
-	game->ray_c.wall_x = 0;
+	// game->ray_c.wall_x = 0;
 	game->ray_c.map_x = 0;
 	game->ray_c.map_y = 0;
 	game->ray_c.tex_index = 0;

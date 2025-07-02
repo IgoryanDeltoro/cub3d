@@ -16,8 +16,8 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "error_message.h"
-// # include "../utils/minilibx-linux/mlx.h"
-# include "mlx.h"
+# include "../utils/minilibx-linux/mlx.h"
+// # include "mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -46,8 +46,18 @@ typedef struct s_textures
     int     bpp;
     int     line_len;
     int     endian;
+	////////
+	char	*addr; 
 } t_textures;
 
+typedef struct s_img
+{
+	void	*img_ptr;      // Pointer to the image instance
+	char	*addr;         // Pointer to the memory address of the pixel data
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_img;
 typedef struct s_player
 {
 	double	x;
@@ -60,7 +70,6 @@ typedef struct s_player
 
 typedef struct s_ray_cast
 {
-	// double 	camera_x;
 	double 	ray_dir_x;
 	double 	ray_dir_y;
 	double 	delta_dist_x;
@@ -68,7 +77,6 @@ typedef struct s_ray_cast
 	double 	side_dist_x;
 	double	side_dist_y;
 	double 	perp_wall_dist;
-	double 	wall_x;
 	int 	map_x;
 	int 	map_y;
 	int 	tex_index;
@@ -77,7 +85,6 @@ typedef struct s_ray_cast
 	int 	draw_end;
 	int 	step_x;
 	int		step_y;
-	// int 	hit;
 	int 	side;
 	int 	tex_x;
 
@@ -91,6 +98,7 @@ typedef struct s_game
 	t_textures	textures[4];
 	int			floor_color[3];
 	int			ceiling_color[3];
+	t_img       screen_buffer;
 	char		**map;
 	char		*no;
 	char		*so;
