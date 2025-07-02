@@ -1,49 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atio.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
+/*   By: rghazary <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/07 10:54:09 by ibondarc          #+#    #+#             */
-/*   Updated: 2025/05/09 14:47:55 by ibondarc         ###   ########.fr       */
+/*   Created: 2024/09/09 11:07:46 by rghazary          #+#    #+#             */
+/*   Updated: 2024/09/09 11:07:49 by rghazary         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 
-int	whitespace(const char *str, int *idx)
+int	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
+	long int	result;
+	long int	temp_result;
+	int			num;
 
-	i = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == 45)
-	{
-		sign *= -1;
-		i++;
-	}
-	else if (str[i] == 43)
-		i++;
-	*idx = i;
-	return (sign);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	sign;
-	int	result;
-
+	num = 1;
 	result = 0;
-	sign = whitespace(nptr, &i);
-	while (nptr[i] >= 48 && nptr[i] <= 57)
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		result = result * 10 + (nptr[i] - 48);
-		i++;
+		if (*str == '-')
+			num = -1;
+		str++;
 	}
-	return (sign * result);
+	while (ft_isdigit(*str))
+	{
+		temp_result = result * 10 + (*str - '0');
+		if ((num == -1) && (-temp_result < -2147483648))
+			return (0);
+		if (num == 1 && temp_result > 2147483647)
+			return (0);
+		result = temp_result;
+		str++;
+	}
+	return (result * num);
 }

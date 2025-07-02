@@ -12,14 +12,14 @@
 
 #include "../../includes/cub3d.h"
 
-void initial_player(t_player *player)
+void initial_player(t_game *game)
 {
-    player->x = 0;
-	player->y = 0;
-	player->dir_x = 0;
-	player->dir_y = 0;
-	player->plane_x = 0;
-	player->plane_y = 0;
+	game->player.dir_x = -1;
+    game->player.dir_y = 0;
+    game->player.plane_x = 0;
+    game->player.plane_y = 0.66;
+    game->player.x = 0;
+	game->player.y = 0;
 }
 
 void initial_textures(t_textures *textures)
@@ -44,6 +44,6 @@ void	initial_game(t_game *game)
 	game->map = NULL;
 	game->map_width = 0;
 	game->map_height = 0;
-	initial_player(&game->player);
+	initial_player(game);
 	initial_textures(game->textures);
 }

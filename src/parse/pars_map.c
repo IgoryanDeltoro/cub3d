@@ -12,35 +12,6 @@
 
 #include "../../includes/cub3d.h"
 
-char	*utils_str_join(char *str1, char *str2)
-{
-	char	*temp;
-	int		i;
-	int		j;
-
-	i = -1;
-	j = 0;
-	if (!str1 || !str2)
-	{
-		if (str2)
-			return (free(str2), str2 = NULL, NULL);
-		else if (str1)
-			return (free(str1), str1 = NULL, NULL);
-		else
-			return (NULL);
-	}
-	temp = malloc(ft_strlen(str1) + ft_strlen(str2) + 1);
-	if (!temp)
-		return (free(str1), free(str2), str1 = NULL, str2 = NULL, NULL);
-	while (str1[++i])
-		temp[i] = str1[i];
-	while (str2[j])
-		temp[i++] = str2[j++];
-	temp[i] = '\0';
-	(free(str1), free(str2));
-	return (str1 = NULL, str2 = NULL, temp);
-}
-
 char	*pars_create_map_string(t_game *game, char *map_str, char *temp)
 {
 	int	i;
@@ -65,19 +36,29 @@ char	*pars_create_map_string(t_game *game, char *map_str, char *temp)
 		(free(map_str), exit_with_error(game, MAL));
 	return (map_str);
 }
-
-int	pars_check_item(char **map, int i, int j, char ch)
+int	pars_check_item_1(char **map, int i, int j)
 {
-	if (ch == 'N')
+	if (map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'W' && map[i][j] != 'E')
+		return (2);
+	if (map[i + 1][j] == ' ' || map[i + 1][j] == '\t'
+		|| map[i + 1][j] == '\n' || map[i + 1][j] == '\0'
+		|| map[i - 1][j] == ' ' || map[i - 1][j] == '\t'
+		|| map[i - 1][j] == '\n' || map[i - 1][j] == '\0'
+		|| map[i][j + 1] == ' ' || map[i][j + 1] == '\t'
+		|| map[i][j + 1] == '\n' || map[i][j + 1] == '\0'
+		|| map[i][j - 1] == ' ' || map[i][j - 1] == '\t'
+		|| map[i][j - 1] == '\n' || map[i][j - 1] == '\0')
 	{
-		if (map[i + 1][j] == ' ' || map[i + 1][j] == '\t'
-			|| map[i + 1][j] == '\n' || map[i + 1][j] == '\0'
-			|| map[i - 1][j] == ' ' || map[i - 1][j] == '\t'
-			|| map[i - 1][j] == '\n' || map[i - 1][j] == '\0'
-			|| map[i][j + 1] == ' ' || map[i][j + 1] == '\t'
-			|| map[i][j + 1] == '\n' || map[i][j + 1] == '\0'
-			|| map[i][j - 1] == ' ' || map[i][j - 1] == '\t'
-			|| map[i][j - 1] == '\n' || map[i][j - 1] == '\0')
+		return (2);
+	}
+	return (0);
+}
+
+int	pars_check_item(char **map, int i, int j, bool val)
+{
+	if (val)
+	{
+		if (pars_check_item_1(map, i, j))
 			return (2);
 	}
 	if (map[i][j + 1] == ' ' || map[i][j + 1] == '\t'
@@ -104,27 +85,24 @@ int	pars_map_1(t_game *game, int i, int *n)
 	{
 		if (game->map[i][j] != ' ' && game->map[i][j] != '\t')
 		{
-			if (game->map[i][j] == 'N')
+			if (ft_isalpha(game->map[i][j]))
 			{
 				if (*n > 0 || i == 0 || j == 0 || game->map[i + 1] == NULL
 					|| game->map[i][j + 1] == '\n'
-					|| pars_check_item(game->map, i, j, 'N'))
+					|| game->map[i][j + 1] == '\0'
+					|| pars_check_item(game->map, i, j, true))
 					return (2);
 				game->player.y = i;
 				game->player.x = j;
 				*n += 1;
 			}
 			else if (game->map[i][j] == '0'
-				&& pars_check_item(game->map, i, j, '0'))
+				&& pars_check_item(game->map, i, j, false))
 				return (2);
 			else if (game->map[i][j] != '0' && game->map[i][j] != '1')
 				return (2);
 		}
 	}
-	game->player.dir_x = -1;
-    game->player.dir_y = 0;
-    game->player.plane_x = 0;
-    game->player.plane_y = 0.66;
 	return (0);
 }
 

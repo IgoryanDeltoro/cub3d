@@ -64,8 +64,8 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_textures	textures[4];
-	int			floor_color[3];
-	int			ceiling_color[3];
+	int			floor_color;
+	int			ceiling_color;
 	char		**map;
 	char		*no;
 	char		*so;
@@ -112,7 +112,7 @@ int		pars_check_comma(char *str);
 
 char	*utils_str_join(char *str1, char *str2);
 char	*pars_create_map_string(t_game *game, char *map_str, char *temp);
-int		pars_check_item(char **map, int i, int j, char ch);
+int		pars_check_item(char **map, int i, int j, bool val);
 int		pars_map_1(t_game *game, int i, int *n);
 int		pars_map(t_game *game, char *map_str);
 
