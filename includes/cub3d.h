@@ -16,8 +16,8 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "error_message.h"
-# include "../utils/minilibx-linux/mlx.h"
-// # include "mlx.h"
+// # include "../utils/minilibx-linux/mlx.h"
+# include "mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -28,7 +28,7 @@
 
 # define WIDTH 1900
 # define HEIGHT 800
-# define MOVE_SPEED 0.05
+# define MOVE_SPEED 0.1
 # define ROT_SPEED 0.05
 # define COLL_MARGIN 0.5
 
@@ -52,12 +52,13 @@ typedef struct s_textures
 
 typedef struct s_img
 {
-	void	*img_ptr;      // Pointer to the image instance
-	char	*addr;         // Pointer to the memory address of the pixel data
+	void	*img_ptr;     
+	char	*addr;        
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
 }	t_img;
+
 typedef struct s_player
 {
 	double	x;
@@ -87,7 +88,6 @@ typedef struct s_ray_cast
 	int		step_y;
 	int 	side;
 	int 	tex_x;
-
 }			t_ray_cast;
 
 typedef struct s_game 
@@ -130,7 +130,7 @@ int    render_map(void *game);
 // UTILS
 void    error_exit(const char *msg);
 char    *get_next_line(int fd);
-int     rgb_to_int(int r, int g, int b);
+int     rgb_to_int(int *color);
 
 /////////////  get_next_line ///////////
 char	*get_next_line(int fd);
