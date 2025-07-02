@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_collor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghazary <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:07:46 by rghazary          #+#    #+#             */
-/*   Updated: 2024/10/17 12:35:15 by rghazary         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:16:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ int	pars_init_collor_2(int *value , char **res)
 
 int	pars_init_collor_1(t_game *game, char **collor, char **res)
 {
-	int i;
-
-	i = -1;
 	if (res[0] && ft_strcmp(collor[0], "C") == 0)
 	{
 		if (pars_init_collor_2(&game->ceiling_color, res))
