@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/25 12:53:53 by ibondarc          #+#    #+#             */
+/*   Updated: 2025/07/02 11:50:45 by ibondarc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cub3d.h"
 
 void	put_pixel_to_buffer(t_img *buffer, int x, int y, int color)
 {
 	char *dst;
 
-	dst = buffer->addr + (y * buffer->line_length + x 
-		* (buffer->bits_per_pixel / 8));
+	dst = buffer->addr + (y * buffer->line_length + x * (buffer->bits_per_pixel
+				/ 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -101,14 +113,14 @@ void	calculate_perp_wall_dist(t_game *game)
 
 	if (game->ray_c.side == 0)
 	{
-		x = (game->ray_c.map_x - game->player.x 
-			+ (1 - game->ray_c.step_x) / 2);
+		x = (game->ray_c.map_x - game->player.x + (1 - game->ray_c.step_x)
+				/ 2);
 		game->ray_c.perp_wall_dist = x / game->ray_c.ray_dir_x;
 	}
 	else
 	{
-		y = (game->ray_c.map_y - game->player.y 
-			+ (1 - game->ray_c.step_y) / 2);
+		y = (game->ray_c.map_y - game->player.y + (1 - game->ray_c.step_y)
+				/ 2);
 		game->ray_c.perp_wall_dist = y / game->ray_c.ray_dir_y;
 	}
 }
@@ -124,7 +136,7 @@ void	calculate_wall_slice_height(t_game *game)
 		game->ray_c.draw_end = HEIGHT - 1;
 }
 
-void	select_texture(t_game *game) 
+void	select_texture(t_game *game)
 {
 	if (game->ray_c.side == 0)
 	{
@@ -174,7 +186,8 @@ void	draw_vertical_line(t_game *game, t_textures *tex, int x)
 	while (y < HEIGHT)
 	{
 		if (y < game->ray_c.draw_start)
-			put_pixel_to_buffer(&game->screen_buffer, x, y, game->ceiling_color);
+			put_pixel_to_buffer(&game->screen_buffer, x, y,
+				game->ceiling_color);
 		else if (y >= game->ray_c.draw_start && y <= game->ray_c.draw_end)
 		{
 			d = y * 256 - HEIGHT * 128 + game->ray_c.line_height * 128;
@@ -212,7 +225,7 @@ int	render_map(void *param)
 		draw_vertical_line(game, tex, x);
 		x++;
 	}
-	mlx_put_image_to_window(game->mlx, game->win, game->screen_buffer.img_ptr,
-		0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->screen_buffer.img, 0,
+		0);
 	return (0);
 }

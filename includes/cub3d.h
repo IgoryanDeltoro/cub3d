@@ -46,13 +46,12 @@ typedef struct s_textures
     int     bpp;
     int     line_len;
     int     endian;
-	////////
 	char	*addr; 
 } t_textures;
 
 typedef struct s_img
 {
-	void	*img_ptr;     
+	void	*img;     
 	char	*addr;        
 	int		bits_per_pixel;
 	int		line_length;
