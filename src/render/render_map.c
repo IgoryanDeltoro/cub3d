@@ -143,12 +143,12 @@ void	select_texture(t_game *game)
 		if (game->ray_c.ray_dir_x > 0)
 			game->ray_c.tex_index = 2;
 		else
-			game->ray_c.tex_index = 3;
+			game->ray_c.tex_index = 3; 
 	}
 	else
 	{
 		if (game->ray_c.ray_dir_y > 0)
-			game->ray_c.tex_index = 1;
+			game->ray_c.tex_index = 1; 
 		else
 			game->ray_c.tex_index = 0;
 	}
