@@ -138,13 +138,13 @@ int		read_map(t_game *data);
 void	validate_imputs(t_game *game, int ac, char *str);
 
 ////////// parse /////////////
-int		pars_check_valid_collor(char *str);
-int		pars_init_collor(t_game *game, char **collor);
-int		pars_collor(t_game *game, char *temp, int *col, int n);
+int		pars_check_valid_color(char *str);
+int		pars_init_color(t_game *game, char **color);
+int		pars_color(t_game *game, char *temp, int *col, int n);
 int		pars_check_comma(char *str);
 
 char	*utils_str_join(char *str1, char *str2);
-char	*pars_create_map_string(t_game *game, char *map_str, char *temp);
+char	*pars_create_map_string(t_game *game, char **map_str, char *temp);
 int		pars_check_item(char **map, int i, int j, bool val);
 int		pars_map_1(t_game *game, int i, int *n);
 int		pars_map(t_game *game, char *map_str);

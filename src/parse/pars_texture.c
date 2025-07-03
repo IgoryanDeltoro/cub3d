@@ -96,11 +96,11 @@ int	pars_texture(t_game *game, char *temp, int *count, int n)
 	if (len >= n && (temp[n] == ' ' || temp[n] == '\t'))
 		texture = ft_split(temp, temp[n]);
 	else
-		(free(temp), exit_with_error(game, ICM));
+		(free(temp), exit_with_error(game, TCM));
 	if (!texture)
 		(free(temp), exit_with_error(game, MAL));
 	if (texture[1] == NULL || texture[2] != NULL)
-		(free(temp), free_2d(texture), exit_with_error(game, ICM));
+		(free(temp), free_2d(texture), exit_with_error(game, TCM));
 	else
 		(free(temp), pars_texture_1(game, texture));
 	return (*count += 1, free_2d(texture), 0);

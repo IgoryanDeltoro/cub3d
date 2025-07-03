@@ -24,7 +24,8 @@ SRC =  	cub3d.c \
 		init/free.c \
 		parse/pars_map.c \
 		render/render_map.c \
-		parse/pars_collor.c \
+		parse/pars_color.c \
+		parse/pars_utils.c \
 		parse/pars_texture.c \
 		error/exit_error.c \
 		error/print_error.c \

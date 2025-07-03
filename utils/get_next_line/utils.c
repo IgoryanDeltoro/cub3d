@@ -26,31 +26,41 @@ ssize_t	ft_str_chr(char *str)
 	return (-1);
 }
 
+int	read_map_1(t_game *game, char *temp, char **map_str, int *count)
+{
+	if (pars_check_line(temp))
+	{
+		if ((ft_strncmp(temp, "C", 1) == 0
+				|| ft_strncmp(temp, "F", 1) == 0) && *count < 6)
+		{
+			pars_color(game, temp, count, 1);
+		}
+		else if (*count < 6)
+			pars_texture(game, temp, count, 2);
+		else if (*map_str || pars_check_line(temp))
+			*map_str = pars_create_map_string(game, map_str, temp);
+	}
+	else
+		free(temp);
+	return (0);
+}
+
 int	read_map(t_game *game)
 {
 	char	*temp;
 	char	*map_str;
 	int		count;
-	int		col;
 
 	count = 0;
-	col = 0;
 	map_str = NULL;
 	while (1)
 	{
 		temp = get_next_line(game->fd);
 		if (temp == NULL)
 			break ;
-		if (pars_check_line(temp) && count < 4)
-			pars_texture(game, temp, &count, 2);
-		else if (pars_check_line(temp) && col < 2)
-			pars_collor(game, temp, &col, 1);
-		else if (map_str || pars_check_line(temp))
-			map_str = pars_create_map_string(game, map_str, temp);
-		else
-			free(temp);
+		read_map_1(game, temp, &map_str, &count);
 	}
-	if (map_str && pars_map(game, map_str))
+	if (pars_map(game, map_str))
 		(free(map_str), exit_with_error(game, ICM));
 	return (free(map_str), 0);
 }

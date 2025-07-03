@@ -11,12 +11,23 @@
 /* ************************************************************************** */
 
 #define FCW "Error\nFailed to create window.\n"
+
 #define FLT "Error\nFailed to load texture.\n"
+
 #define TMI "Error\nIncorrect number of items like E, P or C.\n"
+
 #define IW "Error\nMap must be enclosed by walls.\n"
-#define ICM "Error\nInvalid character in map.\n"
+
+#define ICM "Error\nInvalid map.\n"
+
+#define TCM "Error\nInvalid texture in map.\n"
+
+#define CCM "Error\nInvalid color in map.\n"
+
 #define NVP "Error\nThere's no right way in the map.\n"
-#define IMS "Error\nIncorrect map size.\n"
+
+//#define IMS "Error\nIncorrect map size.\n"
+
 #define FD "Error\nUsage: ./cub3D <map_file.cub>\n"
 #define WN "Error\nThe map description file must contain a .cub ending.\n"
 #define TSN "Error\nThe map name must be more than 4 characters long.\n"

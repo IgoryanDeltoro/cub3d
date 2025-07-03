@@ -14,7 +14,18 @@
 
 int close_game(t_game *game)
 {
+    int i;
+
+    i = -1;
+    while (++i < 4)
+    {
+         mlx_destroy_image(game->mlx, game->textures[i].img);
+         game->textures[i].img = NULL;
+    }
+    mlx_destroy_image(game->mlx, game->screen_buffer.img);
     mlx_destroy_window(game->mlx, game->win);
+    mlx_destroy_display(game->mlx);
+    free_game(game);
     exit(0);
     return 0;
 }

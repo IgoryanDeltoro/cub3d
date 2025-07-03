@@ -30,6 +30,15 @@ int	free_game(t_game *game)
 
 int	exit_with_error(t_game *game, char *error)
 {
+	char *temp;
+
+	while (1)
+	{
+		temp = get_next_line(game->fd);
+		if (temp == NULL)
+			break;
+		free(temp);
+	}
 	if (game)
 		free_game(game);
 	if (error)
