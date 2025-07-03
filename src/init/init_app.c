@@ -62,6 +62,8 @@ void	initial_game(t_game *game)
 	game->so = NULL;
 	game->we = NULL;
 	game->fd = -1;
+	game->ceiling_color = -1;
+	game->floor_color = -1;
 	game->mlx = NULL;
 	game->win = NULL;
 	game->map = NULL;
@@ -70,4 +72,9 @@ void	initial_game(t_game *game)
 	initial_player(game);
 	initial_textures(game->textures);
 	initial_ray_cast(game);
+}
+
+int rgb_to_int(int r, int g, int b)
+{
+    return (r << 16 | g << 8 | b);
 }

@@ -12,33 +12,10 @@
 
 #include "../../includes/cub3d.h"
 
-char	*pars_create_map_string(t_game *game, char *map_str, char *temp)
-{
-	int	i;
-
-	i = 0;
-	if (map_str)
-	{
-		while (temp[i] && !ft_isdigit(temp[i]))
-			i++;
-		if (temp[i] == '\0')
-		{
-			free(map_str);
-			(free(temp), exit_with_error(game, ICM));
-			return (NULL);
-		}
-	}
-	if (map_str == NULL)
-		map_str = utils_str_join(ft_strdup(""), temp);
-	else
-		map_str = utils_str_join(map_str, temp);
-	if (!map_str)
-		(free(map_str), exit_with_error(game, MAL));
-	return (map_str);
-}
 int	pars_check_item_1(char **map, int i, int j)
 {
-	if (map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'W' && map[i][j] != 'E')
+	if (map[i][j] != 'N' && map[i][j] != 'S'
+		&& map[i][j] != 'W' && map[i][j] != 'E')
 		return (2);
 	if (map[i + 1][j] == ' ' || map[i + 1][j] == '\t'
 		|| map[i + 1][j] == '\n' || map[i + 1][j] == '\0'
@@ -76,6 +53,19 @@ int	pars_check_item(char **map, int i, int j, bool val)
 	return (0);
 }
 
+int	pars_map_2(t_game *game, int i, int j, int *n)
+{
+	if (*n > 0 || i == 0 || j == 0 || game->map[i + 1] == NULL
+		|| game->map[i][j + 1] == '\n'
+		|| game->map[i][j + 1] == '\0'
+		|| pars_check_item(game->map, i, j, true))
+		return (2);
+	game->player.y = i + 0.5;
+	game->player.x = j + 0.5;
+	*n += 1;
+	return (0);
+}
+
 int	pars_map_1(t_game *game, int i, int *n)
 {
 	int	j;
@@ -87,14 +77,8 @@ int	pars_map_1(t_game *game, int i, int *n)
 		{
 			if (ft_isalpha(game->map[i][j]))
 			{
-				if (*n > 0 || i == 0 || j == 0 || game->map[i + 1] == NULL
-					|| game->map[i][j + 1] == '\n'
-					|| game->map[i][j + 1] == '\0'
-					|| pars_check_item(game->map, i, j, true))
+				if (pars_map_2(game, i, j, n))
 					return (2);
-				game->player.y = i;
-				game->player.x = j;
-				*n += 1;
 			}
 			else if (game->map[i][j] == '0'
 				&& pars_check_item(game->map, i, j, false))

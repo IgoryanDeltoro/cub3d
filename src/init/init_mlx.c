@@ -24,6 +24,7 @@ bool	load_texture(t_game *game, t_textures *tex, char *path)
 		return (false);
 	return (true);
 }
+
 bool	init_textures(t_game *game)
 {
 	if (!load_texture(game, &game->textures[0], game->no))
