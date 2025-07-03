@@ -141,16 +141,16 @@ void	select_texture(t_game *game)
 	if (game->ray_c.side == 0)
 	{
 		if (game->ray_c.ray_dir_x > 0)
-			game->ray_c.tex_index = 2; //east
+			game->ray_c.tex_index = 2;
 		else
-			game->ray_c.tex_index = 3; //west
+			game->ray_c.tex_index = 3; 
 	}
 	else
 	{
 		if (game->ray_c.ray_dir_y > 0)
-			game->ray_c.tex_index = 1; //south
+			game->ray_c.tex_index = 1; 
 		else
-			game->ray_c.tex_index = 0; //north
+			game->ray_c.tex_index = 0;
 	}
 }
 

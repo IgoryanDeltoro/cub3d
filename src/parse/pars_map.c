@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ibondarc <ibondarc@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:07:46 by rghazary          #+#    #+#             */
-/*   Updated: 2025/07/02 15:29:13 by marvin           ###   ########.fr       */
+/*   Updated: 2025/07/03 13:30:45 by ibondarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int	pars_map_1(t_game *game, int i, int *n)
 					|| game->map[i][j + 1] == '\0'
 					|| pars_check_item(game->map, i, j, true))
 					return (2);
-				game->player.y = i;
-				game->player.x = j;
+				game->player.y = i + 0.5;
+				game->player.x = j + 0.5;
 				*n += 1;
 			}
 			else if (game->map[i][j] == '0'

@@ -16,8 +16,8 @@
 # include <fcntl.h>
 # include "libft.h"
 # include "error_message.h"
-# include "../utils/minilibx-linux/mlx.h"
-// # include "mlx.h"
+// # include "../utils/minilibx-linux/mlx.h"
+# include "mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -103,7 +103,6 @@ typedef struct s_game
 	char		*so;
 	char		*we;
 	char		*ea;
-	char		visible_dir;
 	int			map_width;
 	int			map_height;
 	t_player	player;
