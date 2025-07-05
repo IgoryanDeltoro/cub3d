@@ -1,13 +1,23 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rghazary <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/07/05 12:14:15 by rghazary          #+#    #+#              #
+#    Updated: 2025/07/05 12:14:17 by rghazary         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 
 GREEN = \033[0;32m
 RESET = \033[0m
 
 NAME  = cub3D
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
-# MLX_DIR = utils/minilibx-linux
-# MLX = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 MLX = -lmlx -lXext -lm
 SRC_DIR = src
 OBJ_DIR = obj

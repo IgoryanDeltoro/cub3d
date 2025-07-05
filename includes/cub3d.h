@@ -115,7 +115,6 @@ void	move_forward(t_game *game);
 void	move_backward(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
-int		parse_cub_file(char *file, t_game *game);
 int		render_map(void *game);
 char	*get_next_line(int fd);
 int		rgb_to_int(int a, int b, int c);
