@@ -25,17 +25,17 @@ bool	load_texture(t_game *game, t_textures *tex, char *path)
 	return (true);
 }
 
-bool	handle_loading_t(t_game *game, char **str)
+bool	handle_t(t_game *game, char **str)
 {
 	int	i;
 
 	i = 0;
-	if (!str)
-		return (false);
 	while (i < 4)
 	{
 		if (!load_texture(game, &game->textures[i], str[i]))
-			return (free(str), false);
+		{
+			return (free(str), print_error(FLT), close_game(game));
+		}
 		i++;
 	}
 	free(str);
@@ -59,34 +59,29 @@ char	**make_arr(char *s1, char *s2, char *s3, char *s4)
 
 bool	init_textures(t_game *game)
 {
+	char	**dest;
+
+	dest = NULL;
 	if (game->map[(int)game->player.y][(int)game->player.x] == 'N')
-	{
-		if (!handle_loading_t(game, make_arr(game->ea, game->we, game->no, game->so)))
-			return (false);
-	}
+		dest = make_arr(game->ea, game->we, game->no, game->so);
 	else if (game->map[(int)game->player.y][(int)game->player.x] == 'S')
-	{
-		if (!handle_loading_t(game, make_arr(game->we, game->ea, game->so, game->no)))
-			return (false);
-	}
+		dest = make_arr(game->we, game->ea, game->so, game->no);
 	else if (game->map[(int)game->player.y][(int)game->player.x] == 'E')
+		dest = make_arr(game->so, game->no, game->ea, game->we);
+	else if (game->map[(int)game->player.y][(int)game->player.x] == 'W')
+		dest = make_arr(game->no, game->so, game->we, game->ea);
+	if (!dest)
 	{
-		if (!handle_loading_t(game, make_arr(game->so, game->no, game->ea, game->we)))
-			return (false);
+		print_error(MAL);
+		close_game(game);
 	}
-	if (game->map[(int)game->player.y][(int)game->player.x] == 'W')
-	{
-		if (!handle_loading_t(game, make_arr(game->no, game->so, game->we, game->ea)))
-			return (false);
-	}
-	return (true);
+	return (handle_t(game, dest));
 }
 
 void	init_mlx(t_game *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		exit_with_error(NULL, FIM);
-	if (!init_textures(game))
-		exit_with_error(NULL, FLT);
+		exit_with_error(game, FIM);
+	init_textures(game);
 }

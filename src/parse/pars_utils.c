@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   pars_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghazary <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rghazary <rghazary@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 13:44:42 by rghazary          #+#    #+#             */
 /*   Updated: 2025/07/03 13:44:44 by rghazary         ###   ########.fr       */

@@ -1,8 +1,7 @@
 {
     "configurations": [
         {
-
-            "name": "followChild",
+           "name": "followChild",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/cub3D",
