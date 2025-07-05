@@ -33,7 +33,7 @@ int	pars_check_item_1(char **map, int i, int j)
 
 int	pars_check_item(char **map, int i, int j, bool val)
 {
-	if (i == 0 || j == 0 || map[i + 1] == NULL)
+	if (val == false && (i == 0 || j == 0 || map[i + 1] == NULL))
 		return (2);
 	if (val)
 	{
@@ -46,7 +46,8 @@ int	pars_check_item(char **map, int i, int j, bool val)
 	else if (map[i][j - 1] == ' ' || map[i][j - 1] == '\t'
 			|| map[i][j - 1] == '\n' || map[i][j - 1] == '\0')
 		return (1);
-	else if (map[i + 1][j] == ' ' || map[i + 1][j] == '\t'
+	else if ((int)ft_strlen(map[i + 1]) < j || map[i + 1][j] == ' '
+			|| map[i + 1][j] == '\t'
 			|| map[i + 1][j] == '\n' || map[i + 1][j] == '\0')
 		return (1);
 	else if (map[i - 1][j] == ' ' || map[i - 1][j] == '\t'

@@ -31,7 +31,8 @@ void	free_2d(char **str)
 
 int	free_game(t_game *game)
 {
-	close(game->fd);
+	if (game->fd != -1)
+		close(game->fd);
 	if (game->map)
 		free_2d(game->map);
 	if (game->no)

@@ -103,7 +103,7 @@ void	validate_imputs(t_game *game, int ac, char *str)
 	game->fd = open(str, O_RDONLY);
 	if (game->fd < 0)
 	{
-		write(2, "Error\nThere's no right way in the map.\n", 39);
+		write(2, IFD, ft_strlen(IFD));
 		exit (1);
 	}
 }
