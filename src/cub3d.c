@@ -16,11 +16,15 @@ int	main(int ac, char *av[])
 {
 	t_game	game;
 
-	(void)ac;
 	initial_game(&game);
 	validate_imputs(&game, ac, av[1]);
-	read_map(&game);
-	init_mlx(&game); 
-    run_game(&game);
+	if (read_map(&game))
+		return (free_game(&game), 0);
+	init_mlx(&game);
+	if (!run_game(&game))
+	{
+		print_error(FCW);
+		close_game(&game);
+	}
 	return (free_game(&game), 0);
 }

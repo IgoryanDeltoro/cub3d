@@ -12,28 +12,35 @@
 
 #include "../../includes/cub3d.h"
 
-void initial_player(t_game *game)
+void	initial_player(t_game *game)
 {
 	game->player.dir_x = -1;
-    game->player.dir_y = 0;
-    game->player.plane_x = 0;
-    game->player.plane_y = 0.66;
-    game->player.x = 0;
+	game->player.dir_y = 0;
+	game->player.plane_x = 0;
+	game->player.plane_y = 0.66;
+	game->player.x = 0;
 	game->player.y = 0;
 }
 
-void initial_textures(t_textures *textures)
+void	initial_textures(t_textures *textures)
 {
-    textures->img = NULL;
-	textures->data = 0;
-	textures->width = 0;
-	textures->height = 0;
-	textures->bpp = 0;
-	textures->line_len = 0;
-	textures->endian = 0;
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		textures[i].img = NULL;
+		textures[i].data = 0;
+		textures[i].width = 0;
+		textures[i].height = 0;
+		textures[i].bpp = 0;
+		textures[i].line_len = 0;
+		textures[i].endian = 0;
+		i++;
+	}
 }
 
-void initial_ray_cast(t_game *game)
+void	initial_ray_cast(t_game *game)
 {
 	game->ray_c.ray_dir_x = 0;
 	game->ray_c.ray_dir_y = 0;
@@ -42,7 +49,6 @@ void initial_ray_cast(t_game *game)
 	game->ray_c.side_dist_x = 0;
 	game->ray_c.side_dist_y = 0;
 	game->ray_c.perp_wall_dist = 0;
-	// game->ray_c.wall_x = 0;
 	game->ray_c.map_x = 0;
 	game->ray_c.map_y = 0;
 	game->ray_c.tex_index = 0;
@@ -72,9 +78,11 @@ void	initial_game(t_game *game)
 	initial_player(game);
 	initial_textures(game->textures);
 	initial_ray_cast(game);
+	game->screen_buffer.img = NULL;
+	game->screen_buffer.addr = NULL;
 }
 
-int rgb_to_int(int r, int g, int b)
+int	rgb_to_int(int r, int g, int b)
 {
-    return (r << 16 | g << 8 | b);
+	return (r << 16 | g << 8 | b);
 }

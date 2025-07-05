@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   pars_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghazary <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rghazary <rghazary@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:07:46 by rghazary          #+#    #+#             */
 /*   Updated: 2024/10/17 12:35:15 by rghazary         ###   ########.fr       */
@@ -57,7 +57,7 @@ int	pars_check_line(char *s)
 int	pars_no_so_we_ea(t_game *game, char **texture, char **str)
 {
 	if (*str)
-		(free_2d(texture), exit_with_error(game, MAL));
+		(free_2d(texture), exit_with_error(game, TCM));
 	else
 	{
 		*str = ft_strdup(texture[1]);
@@ -77,6 +77,8 @@ int	pars_texture_1(t_game *game, char **texture)
 		pars_no_so_we_ea(game, texture, &game->we);
 	else if (ft_strcmp(texture[0], "EA") == 0)
 		pars_no_so_we_ea(game, texture, &game->ea);
+	else
+		(free_2d(texture), exit_with_error(game, TCM));
 	return (0);
 }
 

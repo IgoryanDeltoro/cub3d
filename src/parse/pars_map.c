@@ -33,6 +33,8 @@ int	pars_check_item_1(char **map, int i, int j)
 
 int	pars_check_item(char **map, int i, int j, bool val)
 {
+	if (i == 0 || j == 0 || map[i + 1] == NULL)
+		return (2);
 	if (val)
 	{
 		if (pars_check_item_1(map, i, j))
@@ -107,5 +109,7 @@ int	pars_map(t_game *game, char *map_str)
 		if (pars_map_1(game, i, &n))
 			return (2);
 	}
+	if (n != 1)
+		return (2);
 	return (0);
 }

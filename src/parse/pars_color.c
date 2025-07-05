@@ -1,9 +1,9 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_color.c                                      :+:      :+:    :+:   */
+/*   pars_color.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rghazary <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rghazary <rghazary@student.42vienna.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 11:07:46 by rghazary          #+#    #+#             */
 /*   Updated: 2024/10/17 12:35:15 by rghazary         ###   ########.fr       */
@@ -88,13 +88,13 @@ int	pars_color(t_game *game, char *temp, int *col, int n)
 		return (free(temp), exit_with_error(game, MAL));
 	color[0] = ft_substr(temp, 0, n);
 	if (!color[0])
-		return (free(temp), exit_with_error(game, MAL));
+		return (free(color), free(temp), exit_with_error(game, MAL));
 	color[1] = ft_substr(temp, n, ft_strlen(temp));
 	if (!color[1])
-		return (free(temp), exit_with_error(game, MAL));
+		return (free_2d(color), free(temp), exit_with_error(game, MAL));
 	trim = ft_strtrim(color[1], " \t\n");
-	if (!temp)
-		return (free(temp), exit_with_error(game, MAL));
+	if (!trim)
+		return (free_2d(color), free(temp), exit_with_error(game, MAL));
 	free(color[1]);
 	color[1] = trim;
 	free(temp);
